@@ -21,13 +21,13 @@ sim_1 : lammatization, wordnet and propernouns
 sim_2 : pos tagging, propernouns, TF-IDF, boosting
 sim_3 : bigrams, trigrams, boosting, TF-IDF, common words, propernouns, 
 
-# Aho Corasik Search 
+## Aho Corasik Search 
 Run an Aho-Corasik search on each tweet based on a list of keywords that would indicate the level of confidence in a first eye witness tweet for a natural disaster. 
 The Aho-Corasik automaton is 'filled' with words in a trie structure, then run on each sentence. For each word matches, a count is kept for both the number of matches and the category in which the match occured. The resulting DF is pickled. 
 
 aho_corasik_filter_words : word bank
 
-# First Eye Witness Tweets : tweetClassifier.py
+## First Eye Witness Tweets : tweetClassifier.py
 Given a DF of a bunch of features of a tweet (likes, aho-corasik results, grouping similarities... ) the following process takes place. 
   1. All contractions are extrapolated (ain't = am not / are not) ...
   2. Database of tweets is loaded, which are tagged as 'relevant tweet' and 'irelevant tweet', with features such as is_first_person, is_suffering, is_current ... data taken into account from the aho- corasik search. 
