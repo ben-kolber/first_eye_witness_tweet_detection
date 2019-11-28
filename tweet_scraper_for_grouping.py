@@ -16,7 +16,7 @@ CONSUMER_SECRET = "XXXX"
 ACCESS_TOKEN = "XXXX"
 ACCESS_TOKEN_SECRET = "XXXX"
 
-### TWITTER CLIENT ###
+# Client 
 class TwitterClient():
     def __init__(self, twitter_user=None):
         self.auth = TwitterAuthenticator().authenticate_twitter_app()
@@ -27,7 +27,7 @@ class TwitterClient():
     def get_twitter_client_api(self):
         return self.twitter_client
 
-### TWITTER AUTHENTICATOR ###
+# Authenticator
 class TwitterAuthenticator():
     def authenticate_twitter_app(self):
         # handles authentication and connection the Twitter streaming API
@@ -39,12 +39,12 @@ class TwitterAuthenticator():
             print('ERROR: authentication failed')
 
 
-### MAIN ###
+# Main
 if __name__ == '__main__':
     twitter_client = TwitterClient()
     api = twitter_client.get_twitter_client_api()
 
-    ### STARTING DATAFRAME FOR LABELING ###
+    # Starting dataframe for labeling
     data = pd.read_excel('/Users/benjaminkolber/Desktop/grouping_media_users.xlsx')
     media = list(data['Media'])
     media += list(data['Journalists'])
@@ -59,10 +59,10 @@ if __name__ == '__main__':
         print('INIT Scraping : ')
         print(outlet)
         try:
-            ### LIST OF A USER'S TWEETS ###
+            # list of use tweet objects 
             tweets = api.user_timeline(screen_name=outlet, count=40,
                                        tweet_mode="extended", include_rts=False)
-            ## LIST WITH TEXT OF USER TWEETS ###
+            # list of text (only) from user tweet objects 
             tmp = []
             for tweet in tweets:
                 print('parsing tweet ... ')
@@ -81,8 +81,8 @@ if __name__ == '__main__':
                 breakingnews = False
                 breaking = False
                 news = False
+                
                 # Check for hashtags
-
                 if '#breakingnews' in tweet.full_text.lower():
                     breakingnews = True
                 if '#breaking' in tweet.full_text.lower():
