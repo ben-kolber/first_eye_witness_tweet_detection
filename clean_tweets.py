@@ -7,7 +7,6 @@ from nltk import PorterStemmer
 from nltk import LancasterStemmer
 from nltk.util import ngrams
 
-
 class Tweet:
     # initialize
     def __init__(self, user, followers, text, creation, retweets, likes, hashtags, propnouns):
@@ -23,11 +22,11 @@ class Tweet:
         self.keywords = self.get_keywords()
         self.bigrams = self.bigrams(self.clean_text)
 
+    # get bigrams 
     def bigrams(self, text):
         return list(nltk.bigrams(text))
 
     # get keywords
-
     def get_keywords(self):
         tmp = []
         self.text = ' '.join(word for word in self.text.split(' ') if not word.startswith('http'))
@@ -38,6 +37,7 @@ class Tweet:
         keywords = [word for word in self.text.split() if word not in stopwords]
         return keywords
 
+    # get the number of propernouns found
     def get_len_propers(self):
         if len(self.propnouns):
             return len(self.propnouns)
