@@ -4,13 +4,11 @@ import re
 from nltk.tag import pos_tag
 from clean_tweets import Tweet
 
-
+# Calculate Similarity score for each word in
+# tweet1 and tweet2 where tweet1 is compared
+# to entire database
+# summation (TF * IDF * BOOST)
 def similarity(tweet_1, tweet_2, all_tweets, propernouns, bigrams_1, bigrams_2):
-
-    # Calculate Similarity score for each word in
-    # tweet1 and tweet2 where tweet1 is compared
-    # to entire database
-    # summation (TF * IDF * BOOST)
     number_of_word_in_tweet = len(tweet_2)
     sim = 0.0
     occurence = 0.0
@@ -82,7 +80,6 @@ for i in range(len(tweets)):
                    for word, pos in tagged_sent if pos == 'NNP']
 
     for j in range(len(tweets)):  # test tweets[i] against all tweets in list
-
         comparator = tweets[j].text
         tester = tweets[j].clean_text
         sim, matches_len, matches, bigrams = similarity(
