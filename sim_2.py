@@ -9,7 +9,6 @@ from collections import Counter
 class GROUP:
 
     # list of tweets and list of keywords that describes the group
-
     def __init__(self, tweet):
         self.tweets = []
         self.tweets.append(tweet)
@@ -60,8 +59,6 @@ class Tweet:
             return 1
 
 # proper noun boosts
-
-
 def Boost():
     if len(self.propnouns):
         return (len(self.propnouns)*1.5)
@@ -121,7 +118,6 @@ class GROUP_MASTER:
             return tweets
 
     def assign_group(self, tweet):
-
         # if this is the first call to the function with first tweet and first group
         if not self.all_groups:
             group = GROUP(tweet)
@@ -129,7 +125,6 @@ class GROUP_MASTER:
 
         # A group of some form exists
         else:
-
             # parsing over all the created groups
             for i in range(len(self.all_groups)):
 
