@@ -10,10 +10,11 @@ from clean_tweets import Tweet
 
 
 def similarity(str1, str2):
-    ##---------------Defining stopwords for English Language---------------##
+    
+    #Defining stopwords for English Language
     stop_words = set(stopwords.words("english"))
-
-    ##---------------Initialising Lists---------------##
+    
+    #Initialising Lists
     filtered_sentence1 = []
     filtered_sentence2 = []
     lemm_sentence1 = []
@@ -27,7 +28,7 @@ def similarity(str1, str2):
     same_sent2 = []
     #ps = PorterStemmer()
 
-    ##---------------Defining WordNet Lematizer for English Language---------------##
+    #Defining WordNet Lematizer for English Language
     lemmatizer = WordNetLemmatizer()
 
     #myfile =  open('Text1.txt', 'r')
@@ -36,29 +37,25 @@ def similarity(str1, str2):
     ##
     # print(word_tokenize(example_text))
 
-    ##---------------Tokenizing and removing the Stopwords---------------##
-
+    #Tokenizing and removing the Stopwords
     for words1 in word_tokenize(str1):
         if words1 not in stop_words:
             if words1.isalnum():
                 filtered_sentence1.append(words1)
 
-    ##---------------Lemmatizing: Root Words---------------##
-
+    #Lemmatizing: Root Words
     for i in filtered_sentence1:
         lemm_sentence1.append(lemmatizer.lemmatize(i))
 
     # print(lemm_sentence1)
 
-    ##---------------Tokenizing and removing the Stopwords---------------##
-
+    # Tokenizing and removing the Stopwords
     for words2 in word_tokenize(str2):
         if words2 not in stop_words:
             if words2.isalnum():
                 filtered_sentence2.append(words2)
 
-    ##---------------Lemmatizing: Root Words---------------##
-
+    #Lemmatizing: Root Words
     for i in filtered_sentence2:
         lemm_sentence2.append(lemmatizer.lemmatize(i))
 
@@ -81,7 +78,7 @@ def similarity(str1, str2):
     # print(lemm_sentence1)
     # print(lemm_sentence2)
 
-    ##---------------Similarity index calculation for each word---------------##
+    #Similarity index calculation for each word
     for word1 in lemm_sentence1:
         simi = []
         for word2 in lemm_sentence2:
@@ -134,16 +131,14 @@ def similarity(str1, str2):
     # print(lemm_sentence1)
     # print(lemm_sentence2)
 
-    ##---------------Final Output---------------##
+    #Final Output
 
     similarity_index = numpy.mean(final)
     similarity_index = round(similarity_index, 2)
     print("Sentence 1: ", str1)
     print("Sentence 2: ", str2)
     print("Similarity index value : ", similarity_index)
-
     return similarity_index
-
 
 data = pd.read_excel('/Users/benjaminkolber/Desktop/test_data_for_comparisson.xlsx')
 tmp = []
@@ -171,7 +166,6 @@ for i in range(len(tweets)):
         sim = similarity(tweet, comparator)
 
         # get sim of tweet with keywords of each group
-
         tmp.append([tweet, comparator, tmp_tweet, tester, sim])
         print('basis tweet:')
         print(tweet)
