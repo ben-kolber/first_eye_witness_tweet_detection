@@ -13,8 +13,7 @@ CONSUMER_SECRET = "XXXX"
 ACCESS_TOKEN = "XXXX"
 ACCESS_TOKEN_SECRET = "XXXX"
 
-### TWITTER CLIENT ###
-
+# CLIENT
 class TwitterClient():
     def __init__(self, twitter_user=None):
         self.auth = TwitterAuthenticator().authenticate_twitter_app()
@@ -25,8 +24,7 @@ class TwitterClient():
     def get_twitter_client_api(self):
         return self.twitter_client
 
-### TWITTER AUTHENTICATOR ###
-
+#  Authenticator 
 class TwitterAuthenticator():
     def authenticate_twitter_app(self):
         # handles authentication and connection the Twitter streaming API
@@ -38,16 +36,16 @@ class TwitterAuthenticator():
             print('ERROR: authentication failed')
 
 
-### MAIN ###
+# Main
 if __name__ == '__main__':
     twitter_client = TwitterClient()
     api = twitter_client.get_twitter_client_api()
 
+    # users to scrape from, with political affiliation
     dictionary = {
         "realDonaldTrump": "Right",
         "elonmusk": "Left",
         "neiltyson": "Middle",
-
 
     ### STARTING DATAFRAME FOR LABELING ###
     df = pd.DataFrame()
@@ -57,10 +55,10 @@ if __name__ == '__main__':
     for key in dictionary:
         try:
             aff = dictionary.get(key, "Unknown")
-            ### LIST OF A USER'S TWEETS ###
+            # user tweet object in a list
             tweets = api.user_timeline(screen_name=key, count=4,
                                        tweet_mode="extended", include_rts=False)
-            ## LIST WITH TEXT OF USER TWEETS ###
+            # text of user tweet 
             tmp = []
             for tweet in tweets:
                 tmp.append([key, aff, tweet.full_text])
