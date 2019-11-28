@@ -7,8 +7,6 @@ from nltk.tag import pos_tag
 import re
 import json
 import unicodedata
-
-
 import tweepy
 import numpy as np
 import pandas as pd
