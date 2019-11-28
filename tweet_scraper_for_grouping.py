@@ -19,8 +19,6 @@ ACCESS_TOKEN = "XXXX"
 ACCESS_TOKEN_SECRET = "XXXX"
 
 ### TWITTER CLIENT ###
-
-
 class TwitterClient():
     def __init__(self, twitter_user=None):
         self.auth = TwitterAuthenticator().authenticate_twitter_app()
@@ -32,8 +30,6 @@ class TwitterClient():
         return self.twitter_client
 
 ### TWITTER AUTHENTICATOR ###
-
-
 class TwitterAuthenticator():
     def authenticate_twitter_app(self):
         # handles authentication and connection the Twitter streaming API
